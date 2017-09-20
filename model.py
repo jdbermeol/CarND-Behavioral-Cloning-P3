@@ -3,7 +3,7 @@ from utils import build_fit_dataset
 from utils import CarNDBehavioralCloningSequence as Sequence
 from sklearn.model_selection import train_test_split
 from keras.models import Sequential
-from keras.layers import Flatten, Dense, Lambda, Cropping2D, Conv2D
+from keras.layers import Flatten, Dense, Lambda, Cropping2D, Conv2D, Dropout
 import matplotlib.pyplot as plt
 
 def build_model(input_shape):
