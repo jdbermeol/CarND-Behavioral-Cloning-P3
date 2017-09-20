@@ -1,4 +1,5 @@
 import argparse
+import os
 from utils import build_fit_dataset
 from utils import CarNDBehavioralCloningSequence as Sequence
 from sklearn.model_selection import train_test_split
@@ -87,3 +88,5 @@ if __name__ == "__main__":
         max_queue_size=10, workers=6,
         verbose=2)
     model.save(args.model_output)
+    name, ext = os.path.splitext(args.model_output)
+    model.save(name + "_weights" + ext)
