@@ -10,58 +10,61 @@ def build_model(input_shape):
     model = Sequential()
     model.add(Cropping2D(((50,20), (0,0)), input_shape=input_shape))
     model.add(Lambda(lambda x: (x - 180.0) / 180.0))
-    model.add(Conv2D(24, [5, 5], strides=(2, 2), padding='valid', activation='relu'))
-    model.add(Conv2D(36, [5, 5], strides=(2, 2), padding='valid', activation='relu'))
-    model.add(Conv2D(48, [5, 5], strides=(2, 2), padding='valid', activation='relu'))
-    model.add(Conv2D(64, [3, 3], padding='valid', activation='relu'))
-    model.add(Conv2D(64, [3, 3], padding='valid', activation='relu'))
+    model.add(Conv2D(24, [5, 5], strides=(2, 2), padding="valid", activation="relu"))
+    model.add(Conv2D(36, [5, 5], strides=(2, 2), padding="valid", activation="relu"))
+    model.add(Conv2D(48, [5, 5], strides=(2, 2), padding="valid", activation="relu"))
+    model.add(Dropout(.1))
+    model.add(Conv2D(64, [3, 3], padding="valid", activation="relu"))
+    model.add(Conv2D(64, [3, 3], padding="valid", activation="relu"))
+    model.add(Dropout(.1))
     model.add(Flatten())
     model.add(Dense(1164))
     model.add(Dense(100))
+    model.add(Dropout(.1))
     model.add(Dense(50))
     model.add(Dense(10))
     model.add(Dense(1))
     return model
 
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Train Driver')
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Train Driver")
     parser.add_argument(
-        '-d',
+        "-d",
         type=str,
-        help='Path to train data.',
-        dest='data_path'
+        help="Path to train data.",
+        dest="data_path"
     )
     parser.add_argument(
-        '-b',
+        "-b",
         type=int,
-        help='Batch size',
+        help="Batch size",
         default=128,
-        nargs='?',
-        dest='batch_size'
+        nargs="?",
+        dest="batch_size"
     )
     parser.add_argument(
-        '-e',
+        "-e",
         type=int,
-        help='epochs',
+        help="epochs",
         default=2,
-        nargs='?',
-        dest='epochs'
+        nargs="?",
+        dest="epochs"
     )
     parser.add_argument(
-        '-l',
+        "-l",
         type=str,
-        help='model_weights',
-        nargs='?',
-        dest='model_weights'
+        help="model_weights",
+        nargs="?",
+        dest="model_weights"
     )
     parser.add_argument(
-        '-o',
+        "-o",
         type=str,
-        help='model_output',
-        nargs='?',
-        dest='model_output',
-        default='model.h5',
+        help="model_output",
+        nargs="?",
+        dest="model_output",
+        default="model.h5",
     )
     args = parser.parse_args()
 
@@ -69,7 +72,7 @@ if __name__ == '__main__':
     if args.model_weights is not None:
         model.load_weights(args.model_weights, by_name=True)
 
-    model.compile(loss='mse', optimizer='adam')
+    model.compile(loss="mse", optimizer="adam")
     model.summary()
 
     dataset = build_fit_dataset(args.data_path)
