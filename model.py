@@ -7,20 +7,12 @@ from keras.models import Sequential
 from keras.layers import Flatten, Dense, Lambda, Cropping2D, Conv2D, Dropout, MaxPooling2D
 from keras import backend as K
 
-# Constants for YUV planes transformation
-yuv_transfor = K.constant([[.299, .587, .114],
-                         [-.14713, -.28886, .436],
-                         [.615, -.51499, -.10001]], shape=(3,3), dtype="float32")
-yuv_mu = K.constant([-128., .0, .0], shape=(3,), dtype="float32")
-yuv_sigma = K.constant([128., 256.*.436, 256.*.615], shape=(3,), dtype="float32")
 
 def pre_process(x):
     """Create YUV planes and grayscale and concatenate them"""
     grayscale = K.mean(x, [3], keepdims=True)
     grayscale = (grayscale - 128.) / 128.
-
-    yuv = K.dot(x, K.transpose(yuv_transfor)) + yuv_mu / yuv_mu
-    return K.concatenate([yuv, grayscale])
+    return grayscale
 
 
 def build_model(input_shape):
@@ -37,8 +29,8 @@ def build_model(input_shape):
     # Dropout layers for better generalization
     model.add(Dropout(.1))
     model.add(Conv2D(64, [3, 3], padding="valid", activation="relu"))
-    model.add(Conv2D(64, [3, 3], padding="valid", activation="relu"))
-    model.add(Conv2D(64, [3, 3], padding="valid", activation="relu"))
+    model.add(MaxPooling2D())
+    model.add(Conv2D(64, [2, 2], padding="valid", activation="relu"))
     # Dropout layers for better generalization
     model.add(Dropout(.1))
     model.add(Flatten())
