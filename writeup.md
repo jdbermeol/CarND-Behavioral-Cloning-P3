@@ -50,21 +50,21 @@ The model.py file contains the code for training and saving the convolution neur
 |:---------------:|:----------------------------------------------------------:|:--:| 
 | Input           | 160x320x3 image                                            | |
 | Crop            | Crop top and bottom of the image, outputs 90x320x3         | 21 |
-| normalization   | 160x320x1 grayscale image                                  | 22 |
-| Convolution 5x5 | 1x1 stride, valid padding, outputs                         | 23 |
+| normalization   | 90x320x1 grayscale image                                   | 22 |
+| Convolution 5x5 | 1x1 stride, valid padding, outputs 86x316x24               | 23 |
 | RELU            |                                                            | 23 |
-| MaxPooling      | 2x2 stride, 2x2 pool size, valid padding, outputs          | 24 |
-| Convolution 5x5 | 1x1 stride, valid padding, outputs                         | 25 |
+| MaxPooling      | 2x2 stride, 2x2 pool size, valid padding, outputs 43,158,24| 24 |
+| Convolution 5x5 | 1x1 stride, valid padding, outputs 39x154x36               | 25 |
 | RELU            |                                                            | 25 |
-| MaxPooling      | 2x2 stride, 2x2 pool size, valid padding, outputs          | 26 |
-| Convolution 5x5 | 1x1 stride, valid padding, outputs                         | 27 |
+| MaxPooling      | 2x2 stride, 2x2 pool size, valid padding, outputs 19x77x36 | 26 |
+| Convolution 5x5 | 1x1 stride, valid padding, outputs 15x73x48                | 27 |
 | RELU            |                                                            | 27 |
-| MaxPooling      | 2x2 stride, 2x2 pool size, valid padding, outputs          | 28 |
+| MaxPooling      | 2x2 stride, 2x2 pool size, valid padding, outputs 7x36x48  | 28 |
 | Dropout         | 0.9 keep probability                                       | 30 |
-| Convolution 3x3 | 1x1 stride, valid padding, outputs                         | 31 |
+| Convolution 3x3 | 1x1 stride, valid padding, outputs 5x4x64                  | 31 |
 | RELU            |                                                            | 31 |
-| MaxPooling      | 2x2 stride, 2x2 pool size, valid padding, outputs          | 32 |
-| Convolution 2x2 | 1x1 stride, valid padding, outputs                         | 33 |
+| MaxPooling      | 2x2 stride, 2x2 pool size, valid padding, outputs 2x17x64  | 32 |
+| Convolution 2x2 | 1x1 stride, valid padding, outputs 1x16x64                 | 33 |
 | RELU            |                                                            | 33 |
 | Dropout         | 0.9 keep probability                                       | 35 |
 | Flatten         |                                                            | 36 |
