@@ -14,13 +14,11 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/placeholder.png "Model Visualization"
-[image2]: ./examples/placeholder.png "Grayscaling"
-[image3]: ./examples/placeholder_small.png "Recovery Image"
-[image4]: ./examples/placeholder_small.png "Recovery Image"
-[image5]: ./examples/placeholder_small.png "Recovery Image"
-[image6]: ./examples/placeholder_small.png "Normal Image"
-[image7]: ./examples/placeholder_small.png "Flipped Image"
+[image1]: ./writeup_imgs/1.jpg "Clockwise"
+[image2]: ./writeup_imgs/2.jpg "Counterclockwise"
+[image3]: ./writeup_imgs/3.jpg "Right recovery"
+[image4]: ./writeup_imgs/4.jpg "Left recovery"
+[image5]: ./writeup_imgs/5.jpg "Flip"
 
 ---
 ### Files Submitted & Code Quality
@@ -46,7 +44,9 @@ The model.py file contains the code for training and saving the convolution neur
 
 ### Model Architecture and Training Strategy
 
-####1. An appropriate model architecture has been employed
+#### 1. Model architecture
+
+TODO
 
 | Layer                 |     Description    | Code line |
 |:---------------------:|:----------------------:|:----------------------:| 
@@ -76,13 +76,13 @@ The model.py file contains the code for training and saving the convolution neur
 
 #### 2. Attempts to reduce overfitting in the model
 
-The model contains dropout layers in order to reduce overfitting (model.py lines 20, 24, 29). 
+The model contains dropout layers in order to reduce overfitting (model.py lines TODO). 
 
-The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 92). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
+The model was trained and validated on different data sets to ensure that the model was not overfitting (code line TOD). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
 
 #### 3. Model parameter tuning
 
-The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 85).
+The model used an adam optimizer, so the learning rate was not tuned manually (model.py line TODO).
 
 #### 4. Appropriate training data
 
@@ -114,21 +114,23 @@ At the end of the process, the vehicle is able to drive autonomously around the 
 
 To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
 
+![alt text][image1]
+
+Then I drive counterclockwise. Here is an example image of center lane driving:
+
 ![alt text][image2]
 
-I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
+I then recorded the vehicle recovering from the left side and right sides of the road back to center. These images show what a recovery looks like :
 
 ![alt text][image3]
 ![alt text][image4]
-![alt text][image5]
 
 Then I repeated this process on track two in order to get more data points.
 
-To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
+To augment the data sat, I also flipped images. For example, here is an image that has then been flipped:
 
-![alt text][image6]
-![alt text][image7]
+![alt text][image5]
 
-After the collection process, I had 128730 number of data points. I finally randomly shuffled the data set and put 20% of the data into a validation set. 
+After the collection process, I had 64365 number of data points. I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
 I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was TODO. I used an adam optimizer so that manually training the learning rate wasn't necessary.
