@@ -134,4 +134,4 @@ To augment the data sat, I also flipped images. For example, here is an image th
 
 After the collection process, I had 64365 number of data points. I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was TODO and batch size 64. I used an adam optimizer so that manually training the learning rate wasn't necessary.
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 8 and batch size 64. I used an adam optimizer so that manually training the learning rate wasn't necessary.
