@@ -22,11 +22,11 @@ def build_fit_dataset(data_path):
         next(reader, None)
         for center,left,right,steering,throttle,brake,speed in reader:
             dataset.append((os.path.join(data_path, center.strip()), [cv2.imread], float(steering), []))
-            #dataset.append((os.path.join(data_path, left.strip()), [cv2.imread], float(steering), [partial(add_correction, correction)]))
-            #dataset.append((os.path.join(data_path, right.strip()), [cv2.imread], float(steering), [partial(add_correction, -1 * correction)]))
+            dataset.append((os.path.join(data_path, left.strip()), [cv2.imread], float(steering), [partial(add_correction, correction)]))
+            dataset.append((os.path.join(data_path, right.strip()), [cv2.imread], float(steering), [partial(add_correction, -1 * correction)]))
             dataset.append((os.path.join(data_path, center.strip()), [cv2.imread, flip_image], float(steering), [flip_steering]))
-            #dataset.append((os.path.join(data_path, left.strip()), [cv2.imread, flip_image], float(steering), [partial(add_correction, correction), flip_steering]))
-            #dataset.append((os.path.join(data_path, right.strip()), [cv2.imread, flip_image], float(steering), [partial(add_correction, -1 * correction), flip_steering]))
+            dataset.append((os.path.join(data_path, left.strip()), [cv2.imread, flip_image], float(steering), [partial(add_correction, correction), flip_steering]))
+            dataset.append((os.path.join(data_path, right.strip()), [cv2.imread, flip_image], float(steering), [partial(add_correction, -1 * correction), flip_steering]))
     return dataset
 
 
