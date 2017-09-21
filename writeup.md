@@ -46,43 +46,44 @@ The model.py file contains the code for training and saving the convolution neur
 
 #### 1. Model architecture
 
-TODO
-
-| Layer                 |     Description    | Code line |
-|:---------------------:|:----------------------:|:----------------------:| 
-| Input                 | 160x320x3 image  | |
-| Crop                 | Crop top and bottom of the image, outputs 90x320x3  | 14 |
-| normalization  | 32x32x1 grayscale image | 15 |
-| Convolution 5x5         | 2x2 stride, valid padding, outputs 43x158x24  | 16 |
-| RELU                    |       | 16 |
-| Convolution 5x5         | 2x2 stride, valid padding, outputs 20x77x36  | 17 |
-| RELU                    |       | 17 |
-| Convolution 5x5         | 2x2 stride, valid padding, outputs 8x37x48  | 18 |
-| RELU                    |       | 19 |
-| Dropout              | 0.9 keep probability  | 20 |
-| Convolution 3x3         | 1x1 stride, valid padding, outputs 6x35x64  | 21 |
-| RELU                    |       | 21 |
-| Convolution 3x3         | 1x1 stride, valid padding, outputs 4x33x64  | 22 |
-| RELU                    |       | 22 |
-| Dropout              | 0.9 keep probability  | 24 |
-| Flatten                    |     | 25 |
-| Fully connected        | outputs 1164   | 26 |
-| Fully connected        | outputs 10   | 27 |
-| Dropout              | 0.9 keep probability  | 29 |
-| Fully connected        | outputs 50    | 30 |
-| Fully connected        | outputs 10   | 31 |
-| Fully connected        | outputs 1   | 32 |
+| Layer           |     Description                                            | Code line |
+|:---------------:|:----------------------------------------------------------:|:--:| 
+| Input           | 160x320x3 image                                            | |
+| Crop            | Crop top and bottom of the image, outputs 90x320x3         | 21 |
+| normalization   | 160x320x1 grayscale image                                  | 22 |
+| Convolution 5x5 | 1x1 stride, valid padding, outputs                         | 23 |
+| RELU            |                                                            | 23 |
+| MaxPooling      | 2x2 stride, 2x2 pool size, valid padding, outputs          | 24 |
+| Convolution 5x5 | 1x1 stride, valid padding, outputs                         | 25 |
+| RELU            |                                                            | 25 |
+| MaxPooling      | 2x2 stride, 2x2 pool size, valid padding, outputs          | 26 |
+| Convolution 5x5 | 1x1 stride, valid padding, outputs                         | 27 |
+| RELU            |                                                            | 27 |
+| MaxPooling      | 2x2 stride, 2x2 pool size, valid padding, outputs          | 28 |
+| Dropout         | 0.9 keep probability                                       | 30 |
+| Convolution 3x3 | 1x1 stride, valid padding, outputs                         | 31 |
+| RELU            |                                                            | 31 |
+| MaxPooling      | 2x2 stride, 2x2 pool size, valid padding, outputs          | 32 |
+| Convolution 2x2 | 1x1 stride, valid padding, outputs                         | 33 |
+| RELU            |                                                            | 33 |
+| Dropout         | 0.9 keep probability                                       | 35 |
+| Flatten         |                                                            | 36 |
+| Fully connected | outputs 100                                                | 37 |
+| Fully connected | outputs 50                                                 | 38 |
+| Dropout         | 0.9 keep probability                                       | 40 |
+| Fully connected | outputs 10                                                 | 41 |
+| Fully connected | outputs 1                                                  | 42 |
 
 
 #### 2. Attempts to reduce overfitting in the model
 
-The model contains dropout layers in order to reduce overfitting (model.py lines TODO). 
+The model contains dropout layers in order to reduce overfitting (model.py lines 30, 35, 40). 
 
 The model was trained and validated on different data sets to ensure that the model was not overfitting (code line TOD). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
 
 #### 3. Model parameter tuning
 
-The model used an adam optimizer, so the learning rate was not tuned manually (model.py line TODO).
+The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 102).
 
 #### 4. Appropriate training data
 
@@ -133,4 +134,4 @@ To augment the data sat, I also flipped images. For example, here is an image th
 
 After the collection process, I had 64365 number of data points. I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was TODO. I used an adam optimizer so that manually training the learning rate wasn't necessary.
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was TODO and batch size 64. I used an adam optimizer so that manually training the learning rate wasn't necessary.
